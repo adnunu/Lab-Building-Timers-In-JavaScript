@@ -23,12 +23,34 @@
  * stopRecurringTimer(timerId); // Stops the recurring timer started with the given ID.
  */
 function recurringTimer(message, interval) {
-  // Set up a timer using setInterval to log the message
-  // Return the timer ID
-}
+    // Validate inputs
+    if (typeof message !== 'string') {
+      throw new Error('message must be a string');
+    }
+    
+    if (typeof interval !== 'number' || interval <= 0) {
+      throw new Error('interval must be a positive number');
+    }
+    
+    // Set up a timer using setInterval to log the message
+    const timerId = setInterval(() => {
+      console.log(message);
+    }, interval);
+    
+    // Return the timer ID
+    return timerId;
+  }
+
 
 function stopRecurringTimer(timerId) {
-  // Stop the timer using clearInterval
-}
+    // Validate input
+    if (timerId === null || timerId === undefined) {
+      throw new Error('timerId is required');
+    }
+    
+    // Stop the timer using clearInterval
+    clearInterval(timerId);
+  }
+  
 
 module.exports = { recurringTimer, stopRecurringTimer };
